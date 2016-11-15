@@ -1,3 +1,4 @@
+
 # server.R
 library(dplyr)
 
@@ -19,9 +20,10 @@ shinyServer(function(input, output) {
   
   # Render a plotly object that returns your map
   output$map <- renderPlotly({ 
-      return(BuildMap(joined.data, input$mapvar))
+    return(BuildMap(joined.data, input$mapvar))
   }) 
   
-  # Create a `scatter` property on your `output` object. That property shoudl be a `renderPlotly` object that returns a scatterplot (`BuildScatter`)
-  
+  output$scatter <- renderPlotly({
+    return(BuildScatter(joined.data, input$search))
+  })
 })
